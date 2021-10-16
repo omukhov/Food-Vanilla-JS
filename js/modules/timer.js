@@ -1,11 +1,9 @@
-function timer() {
+function timer(id, deadline) {
 
-    //Timer
-
-    const deadline = '2021-10-10';                                               // Переменная конца таймера
+    //Timer                                           // Переменная конца таймера
 
     function getTimeRemaining(endTime) {                                        // Получение разницы с дедлайна таймера и нынешней датой
-        const t = Date.parse(deadline) - Date.parse(new Date()),
+        const t = Date.parse(endTime) - Date.parse(new Date()),
               days = Math.floor(t / (1000 * 60 * 60 * 24)),
               hours = Math.floor((t / (1000 * 60 * 60)) % 24),
               minutes = Math.floor((t / (1000 * 60)) % 60 ),
@@ -52,7 +50,7 @@ function timer() {
         }
     }
 
-    setClock('.timer', deadline);
+    setClock(id, deadline);
 }
 
-module.exports = timer;
+export default timer;

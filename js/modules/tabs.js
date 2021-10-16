@@ -1,9 +1,9 @@
-function tabs() {
+function tabs(tabsSelector, tabsContentSelector, tabsParentSelector, activeClass) {
 
     //tabs
-    const tabs = document.querySelectorAll('.tabheader__item'),                 // Получение табов из верстки, на которых есть переходы на контент
-          tabsContent = document.querySelectorAll('.tabcontent'),               // Получение контента табов
-          tabsParent = document.querySelector('.tabheader__items');             // Получение родителя табов для делегирования ему событий
+    const tabs = document.querySelectorAll(tabsSelector),                 // Получение табов из верстки, на которых есть переходы на контент
+          tabsContent = document.querySelectorAll(tabsContentSelector),               // Получение контента табов
+          tabsParent = document.querySelector(tabsParentSelector);             // Получение родителя табов для делегирования ему событий
         
     function hideTabContent() {                                                 // Функция скрытия контента
         tabsContent.forEach(element => {
@@ -12,7 +12,7 @@ function tabs() {
         });
 
         tabs.forEach(element => {
-            element.classList.remove('tabheader__item_active');
+            element.classList.remove(activeClass);
         });
     }
 
@@ -20,7 +20,7 @@ function tabs() {
         tabsContent[i].classList.add('show', 'fade');
         tabsContent[i].classList.remove('hide');
 
-        tabs[i].classList.add('tabheader__item_active');
+        tabs[i].classList.add(activeClass);
     }
 
     hideTabContent();
@@ -29,7 +29,7 @@ function tabs() {
     tabsParent.addEventListener('click', (event) => {                           // Обработчик нажатия на таб
         const target = event.target;
 
-        if(target && target.classList.contains('tabheader__item')) {
+        if(target && target.classList.contains(tabsSelector.slice(1))) {
             tabs.forEach((element, i) => {
                 if(target == element) {  
                     hideTabContent();
@@ -40,4 +40,4 @@ function tabs() {
     });
 }
 
-module.exports = tabs;
+export default tabs;

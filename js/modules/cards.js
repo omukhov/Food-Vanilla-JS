@@ -1,3 +1,5 @@
+import {getResource} from '../services/services';
+
 function cards() {
 
     // Карточки
@@ -46,16 +48,6 @@ function cards() {
         }
     }
 
-    const getResource = async (url) => {                                        // Получение данных с базы для карточек
-        const response = await fetch(url);
-
-        if (!response.ok) {                                                     // Если происходит ошибка сервера, то выходит исключение
-            throw new Error(`Could not fetch ${url}, status: ${response.status}`);
-        }
-
-        return await response.json();
-    };
-
     /* getResource('http://localhost:3000/menu')                                   // Перебор данных массива массивов из базы и получение свойств для карточек
         .then(data => {
             data.forEach(({img, altimg, title, descr, price}) => {
@@ -71,4 +63,4 @@ function cards() {
         });
 }
 
-module.exports = cards;
+export default cards;
